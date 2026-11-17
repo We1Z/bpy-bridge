@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 22% 7%;
+    --foreground: 200 16% 88%;
+    --card: 205 22% 10%;
+    --card-foreground: 200 16% 88%;
+    --popover: 205 22% 10%;
+    --popover-foreground: 200 16% 88%;
+    --primary: 25 82% 60%;
+    --primary-foreground: 210 25% 8%;
+    --secondary: 204 18% 15%;
+    --secondary-foreground: 200 16% 88%;
+    --muted: 204 16% 15%;
+    --muted-foreground: 204 10% 62%;
+    --accent: 204 18% 17%;
+    --accent-foreground: 200 16% 92%;
+    --destructive: 8 60% 56%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 202 17% 20%;
+    --input: 202 17% 24%;
+    --ring: 25 82% 60%;
+    --radius: 0.25rem;
+    --sidebar-background: 204 22% 8%;
+    --sidebar-foreground: 200 16% 88%;
+    --sidebar-primary: 25 82% 60%;
+    --sidebar-primary-foreground: 210 25% 8%;
+    --sidebar-accent: 204 18% 15%;
+    --sidebar-accent-foreground: 200 16% 92%;
+    --sidebar-border: 202 17% 20%;
+    --sidebar-ring: 25 82% 60%;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  html {
+    background: #0d1216;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100dvh;
+    font-family: 'Manrope Variable', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  ::selection {
+    background: #714326;
+    color: #fff4eb;
+  }
+
+  :focus-visible {
+    outline-color: #ed8b45;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #3c4952 #10161a;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #10161a;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #3c4952;
+    border: 2px solid #10161a;
+  }
+}
+
+@layer components {
+  .section-kicker {
+    @apply mb-2 font-mono text-[10px] font-medium uppercase tracking-[0.16em] text-[#d88d5d];
+  }
+
+  .section-title {
+    @apply text-[22px] font-semibold leading-tight tracking-[-0.025em] text-[#e9eef0] sm:text-2xl;
+  }
+
+  .primary-button {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 border border-[#ed8b45] bg-[#ed8b45] px-4 py-2 text-[13px] font-bold text-[#1a120d] transition-colors duration-150 hover:border-[#f2a066] hover:bg-[#f2a066] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#f2a066] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d1216] active:bg-[#d97937];
+  }
+
+  .secondary-button {
+    @apply inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 border border-[#3a4750] bg-[#141b20] px-4 py-2 text-[13px] font-semibold text-[#bdc8ce] transition-colors duration-150 hover:border-[#687781] hover:bg-[#1b242a] hover:text-[#edf1f3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ed8b45] active:bg-[#10161a];
+  }
+
+  .text-button {
+    @apply inline-flex min-h-10 cursor-pointer items-center gap-2 px-1 text-[13px] font-semibold text-[#d6a17e] transition-colors hover:text-[#f1bc96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ed8b45];
+  }
+
+  .next-button {
+    @apply flex min-h-16 w-full cursor-pointer items-center justify-between gap-5 border border-[#35414a] bg-[#12191e] px-5 py-3 text-left transition-colors duration-150 hover:border-[#6c523f] hover:bg-[#191c1d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ed8b45] sm:w-auto sm:min-w-[260px];
+  }
+
+  .resource-link {
+    @apply inline-flex min-h-11 items-center gap-2 text-sm font-medium text-[#d7a17c] transition-colors hover:text-[#f2bd96] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ed8b45];
+  }
+
+  .book-filter {
+    @apply min-h-10 shrink-0 cursor-pointer border border-[#303b43] px-4 font-mono text-[11px] text-[#8e9ca5] transition-colors hover:border-[#52616b] hover:text-[#d7dfe3] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ed8b45];
+  }
+
+  .book-filter-active {
+    @apply border-[#9a6039] bg-[#251c16] text-[#edb18a];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
