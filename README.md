@@ -37,6 +37,7 @@ The deployable static site is generated in `dist/`. There is no backend, account
 - Exercises, hints, solutions, quizzes, and browser-local progress tracking.
 - Searchable Unreal-to-Blender API translation reference.
 - Complete five-chapter book library with 56 development sections, glossary, original page references, and 57 page previews.
+- Interactive UI lab that reconstructs every region of the NBB Asset Manager panel, links controls to source code, simulates asset/version state, and supports step-by-step assembly.
 - Debugging notes, book chapter map, and a guided tour of the NBB Asset Manager.
 - Responsive layouts, keyboard-accessible dialogs, reduced-motion support, and mobile course navigation.
 
