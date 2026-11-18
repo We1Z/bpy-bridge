@@ -5,6 +5,7 @@ import { BookLibrary } from '@/components/BookLibrary'
 import { CourseSidebar } from '@/components/CourseSidebar'
 import { FieldGuide } from '@/components/FieldGuide'
 import { LessonView } from '@/components/LessonView'
+import { UiLab } from '@/components/UiLab'
 import { lessons } from '@/data/course'
 import { cn } from '@/lib/utils'
 import {
@@ -17,7 +18,7 @@ import {
 } from '@/components/ui/dialog'
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet'
 
-type View = 'learn' | 'book' | 'map' | 'guide'
+type View = 'learn' | 'book' | 'map' | 'ui' | 'guide'
 
 const PROGRESS_KEY = 'bpy-bridge-progress-v1'
 const POSITION_KEY = 'bpy-bridge-position-v1'
@@ -41,6 +42,7 @@ function initialPosition() {
 function initialView(): View {
   if (window.location.hash === '#book-library') return 'book'
   if (window.location.hash === '#api-map') return 'map'
+  if (window.location.hash === '#ui-lab') return 'ui'
   if (window.location.hash === '#field-guide') return 'guide'
   return 'learn'
 }
@@ -101,6 +103,7 @@ export default function App() {
     const onHashChange = () => {
       if (window.location.hash === '#book-library') setView('book')
       else if (window.location.hash === '#api-map') setView('map')
+      else if (window.location.hash === '#ui-lab') setView('ui')
       else if (window.location.hash === '#field-guide') setView('guide')
       else {
         const match = window.location.hash.match(/^#lesson\/([a-z-]+)$/)
@@ -114,7 +117,7 @@ export default function App() {
 
   const navigate = (nextView: View) => {
     setView(nextView)
-    const hash = nextView === 'book' ? '#book-library' : nextView === 'map' ? '#api-map' : nextView === 'guide' ? '#field-guide' : `#lesson/${activeLessonId}`
+    const hash = nextView === 'book' ? '#book-library' : nextView === 'map' ? '#api-map' : nextView === 'ui' ? '#ui-lab' : nextView === 'guide' ? '#field-guide' : `#lesson/${activeLessonId}`
     window.history.pushState(null, '', hash)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
@@ -147,6 +150,7 @@ export default function App() {
     { id: 'learn', label: 'Course' },
     { id: 'book', label: 'Book library' },
     { id: 'map', label: 'API map' },
+    { id: 'ui', label: 'UI lab' },
     { id: 'guide', label: 'Field guide' },
   ]
 
@@ -185,7 +189,8 @@ export default function App() {
           {view === 'learn' && <LessonView key={activeLesson.id} lesson={activeLesson} completed={completed.has(activeLesson.id)} onToggleComplete={toggleComplete} onSelectLesson={selectLesson} />}
           {view === 'book' && <BookLibrary onOpenLesson={selectLesson} />}
           {view === 'map' && <ApiMap />}
-          {view === 'guide' && <FieldGuide onOpenLesson={selectLesson} onResetProgress={() => setResetOpen(true)} />}
+          {view === 'ui' && <UiLab onOpenLesson={selectLesson} />}
+          {view === 'guide' && <FieldGuide onOpenLesson={selectLesson} onOpenUiLab={() => navigate('ui')} onResetProgress={() => setResetOpen(true)} />}
         </main>
       </div>
 

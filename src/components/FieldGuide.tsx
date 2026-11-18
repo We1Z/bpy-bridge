@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 
 type FieldGuideProps = {
   onOpenLesson: (lessonId: string) => void
+  onOpenUiLab: () => void
   onResetProgress: () => void
 }
 
@@ -18,7 +19,7 @@ const debuggingCode = `import bpy\nimport traceback\n\n# Inspect the live API in
 
 const reloadCode = `# Windows PowerShell — run from your add-on repository\n# Replace <you> and confirm your actual Blender version first.\nmklink /J "C:\\Users\\<you>\\AppData\\Roaming\\Blender Foundation\\Blender\\5.2\\scripts\\addons\\nbb_asset_manager" "F:\\NBB\\Pipelines\\Blender\\Addons\\nbb_asset_manager"\n\n# Development loop:\n# 1. Edit the source package in your external IDE.\n# 2. In Blender: Text Editor > Text > Reload Scripts.\n# 3. If registration state is stale, restart Blender.\n# 4. Test disable/enable as well as your normal artist workflow.`
 
-export function FieldGuide({ onOpenLesson, onResetProgress }: FieldGuideProps) {
+export function FieldGuide({ onOpenLesson, onOpenUiLab, onResetProgress }: FieldGuideProps) {
   const [activeTab, setActiveTab] = useState<(typeof tabs)[number]['id']>('debug')
 
   const downloadCheatSheet = () => {
@@ -108,7 +109,10 @@ export function FieldGuide({ onOpenLesson, onResetProgress }: FieldGuideProps) {
               </div>
             ))}
           </div>
-          <button type="button" onClick={() => onOpenLesson('nbb-architecture')} className="primary-button mt-7">Open the architecture lesson <ArrowRight className="h-4 w-4" /></button>
+          <div className="mt-7 flex flex-wrap gap-3">
+            <button type="button" onClick={onOpenUiLab} className="primary-button">Explore the interactive UI <ArrowRight className="h-4 w-4" /></button>
+            <button type="button" onClick={() => onOpenLesson('nbb-architecture')} className="secondary-button">Open the architecture lesson</button>
+          </div>
         </div>
       )}
 
